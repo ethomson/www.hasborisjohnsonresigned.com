@@ -28,7 +28,7 @@ export default function Index(props) {
       <Head>
         <title>Has Boris Johnson resigned?</title>
         <meta name="description" content="🤡" />
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:url" content="https://hasborisjohnsonresigned.com/" />
         <meta property="og:title" content="Has Boris Johnson Resigned?" />
         <meta property="og:description" content="🤡" />
