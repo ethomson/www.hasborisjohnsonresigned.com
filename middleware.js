@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function middleware(request) {
   if (request.nextUrl.pathname === '/') {
-    const resigned = false;
+    const resigned = true;
 
     return NextResponse.rewrite(new URL(resigned ? '/yes' : '/no', request.url))
   }
