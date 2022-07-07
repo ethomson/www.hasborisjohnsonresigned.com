@@ -4,8 +4,8 @@ import styles from '../styles/resigned.module.css'
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { resigned: 'yes' } },
-      { params: { resigned: 'no' } }
+      { params: { inoffice: 'yes' } },
+      { params: { inoffice: 'no' } }
     ],
     fallback: false
   }
@@ -14,14 +14,13 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   return {
     props: {
-      resigned: params.resigned || 'no'
+      inoffice: params.inoffice || 'no'
     }
   }
 }
 
 export default function Index(props) {
-  const yesno = props.resigned === 'yes' ? 'Yes' : 'No'
-  const is = props.resigned === 'yes' ? 'is no longer' : 'is still'
+  const description = props.inoffice === 'yes' ? 'but he is still Prime Minister 😭' : 'and is no longer the Prime Minister 🤣'
 
   return (
     <div className={styles.container}>
@@ -43,8 +42,8 @@ export default function Index(props) {
         </div>
 
         <div className={styles.answer}>
-          <span className={styles.yesno}>{yesno}.</span>
-          <span className={styles.description}>Boris Johnson {is} the Prime Minister.</span>
+          <span className={styles.yesno}>Yes,</span>
+          <span className={styles.description}>{description}.</span>
         </div>
       </main>
 
