@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function middleware(request) {
   if (request.nextUrl.pathname === '/') {
-    const inoffice = true;
+    const inoffice = false;
 
     return NextResponse.rewrite(new URL(inoffice ? '/yes' : '/no', request.url))
   }
