@@ -1,26 +1,18 @@
 import Head from 'next/head'
 import styles from '../styles/resigned.module.css'
 
-export async function getStaticPaths() {
-  return {
-    paths: [
-      { params: { inoffice: 'yes' } },
-      { params: { inoffice: 'no' } }
-    ],
-    fallback: false
-  }
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ req }) {
   return {
     props: {
-      inoffice: params.inoffice || 'no'
+      resigned: req.headers['x-resigned'] || 'false',
+      leftOffice: req.headers['x-left-office'] || 'false'
     }
   }
 }
 
 export default function Index(props) {
-  const description = props.inoffice === 'yes' ? 'but he is still Prime Minister 😭' : 'and is no longer the Prime Minister 🤣'
+  const resigned = props.resigned === 'true' ? 'Yes' : 'No';
+  const description = props.leftOffice === 'true' ?  'and is no longer the Prime Minister 🤣' : (props.resigned === 'true' ? 'but' : 'and') + ' he is still Prime Minister 😭';
 
   return (
     <div className={styles.container}>
@@ -42,7 +34,7 @@ export default function Index(props) {
         </div>
 
         <div className={styles.answer}>
-          <span className={styles.yesno}>Yes,</span>
+          <span className={styles.yesno}>{resigned},</span>
           <span className={styles.description}>{description}.</span>
         </div>
       </main>
